@@ -1294,7 +1294,8 @@ app.views.Item = Backbone.View.extend({
       'quantity': this.model.get('quantity'),
       'unitCost': this.formatUnitCost(),
       'options': itemOptions,
-      'imageUrl': this.model.get('defaultThumbnailUrl')
+      'imageUrl': this.model.get('defaultThumbnailUrl'),
+      'cid': this.model.cid
     };
 
     this.$el.html(app.templates.item(context));
@@ -1307,6 +1308,11 @@ app.views.Item = Backbone.View.extend({
     }
     this.$el.addClass(this.options.position % 2 == 0 ? "item-even" : "item-odd");
 
+    this.$el.addClass('clearfix product-single col-md-12');
+
+    // add the cid as the id of this item
+    this.$el.attr( 'id', this.model.cid );
+
     return this;
   },
 
@@ -1317,9 +1323,18 @@ app.views.Item = Backbone.View.extend({
   "itemRemove": function () {
     // normally, we'd call model.destroy, but this is a nested model, so we simply wish to call remove on the items collection
     // which will update the underlying items array on the cart object.
-    app.data.cart.items.remove(this.model);
+    //app.data.cart.items.remove(this.model);
     // save the cart object, which will persist the removal of the item.
-    app.data.cart.save();
+    //app.data.cart.save();
+
+    // since the code above does not work when multiple items are in the cart, set the quantity to 0 and save the cart
+    this.model.set({'quantity': 0}, {'silent': true});
+    var deferred = app.data.cart.save();
+    deferred.complete(function(){location.reload()});
+
+    // hide this item and refresh the page to prevent an incorrect item from showing up
+    var thisCid = '#' + this.model.cid;
+    jQuery( thisCid ).hide();
   },
 
   'formatUnitCost': function () {
