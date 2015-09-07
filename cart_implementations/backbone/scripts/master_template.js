@@ -446,7 +446,7 @@ this["Ultracart"]["templates"]["shipto_address_template"] = Handlebars.template(
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.cart : depth0)) != null ? stack1.shipToFirstName : stack1), depth0))
     + "\"/>\r\n</label>\r\n\r\n<label class=\"name four columns alpha\">\r\n  <span>*Last Name</span>\r\n  <input type=\"text\" id=\"shipToLastName\" name=\"shipping[lastName]\" required class=\"required\"\r\n         value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.cart : depth0)) != null ? stack1.shipToLastName : stack1), depth0))
-    + "\"/>\r\n</label>\r\n\r\n<label class=\"company\">\r\n  <span>Company</span>\r\n  <input type=\"text\" id=\"shipToCompany\" name=\"shipping[company]\" value=\""
+    + "\"/>\r\n</label>\r\n\r\n<label class=\"company four columns alpha\">\r\n  <span>Company</span>\r\n  <input type=\"text\" id=\"shipToCompany\" name=\"shipping[company]\" value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.cart : depth0)) != null ? stack1.shipToCompany : stack1), depth0))
     + "\"/>\r\n</label>\r\n\r\n<label class=\"address four columns alpha\">\r\n  <span>*Address 1</span>\r\n  <input type=\"text\" id=\"shipToAddress1\" name=\"shipping[address1]\" required class=\"required\"\r\n         value=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.cart : depth0)) != null ? stack1.shipToAddress1 : stack1), depth0))
